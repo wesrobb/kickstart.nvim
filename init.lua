@@ -227,8 +227,11 @@ require('lazy').setup({
   --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
 }, {})
+
+-- This fixes copilot suggestions not showing up
+vim.g.copilot_assume_mapped = true -- https://github.com/nvim-lua/kickstart.nvim/issues/184#issuecomment-1444990551
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -270,6 +273,11 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+vim.o.shell = "pwsh"
+vim.o.shellcmdflag = "-command"
+vim.o.shellquote = "\\"
+vim.o.shellxquote = ""
 
 -- [[ Basic Keymaps ]]
 
