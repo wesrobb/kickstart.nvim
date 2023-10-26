@@ -282,7 +282,7 @@ vim.o.shellxquote = ""
 -- Font settings
 if vim.g.nvy == 1 then
   -- Get this here: https://github.com/Znuff/consolas-powerline/blob/master/Consolas%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf
-  vim.o.guifont = "Consolas NF:h14"
+  vim.o.guifont = "JetBrains Mono NF:h12"
 end
 
 -- [[ Basic Keymaps ]]
