@@ -304,6 +304,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- See `:help telescope` and `:help telescope.setup()`
 local telescope = require('telescope')
 telescope.setup {
+  pickers = {
+    find_files = {
+      find_command = { 'rg', '--hidden', '--files', '--iglob', '!.git' },
+      previewer = false,
+    },
+  },
   defaults = {
     mappings = {
       i = {
