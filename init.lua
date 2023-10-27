@@ -117,10 +117,10 @@ require('lazy').setup({
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
+        add =          { text = '+' },
+        change =       { text = '~' },
+        delete =       { text = '_' },
+        topdelete =    { text = '‾' },
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
@@ -581,6 +581,9 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- [[ Configure mini.align ]]
+require('mini.align').setup()
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
