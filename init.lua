@@ -471,13 +471,28 @@ end
 
 -- document existing key chains
 require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-  ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
-  ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+  ['<leader>c'] = { name = '[C]ode',      _ = 'which_key_ignore' },
+  ['<leader>d'] = { name = '[D]ocument',  _ = 'which_key_ignore' },
+  ['<leader>g'] = { name = '[G]it',       _ = 'which_key_ignore' },
+  ['<leader>h'] = { name = 'More git',    _ = 'which_key_ignore' },
+  ['<leader>r'] = { name = '[R]ename',    _ = 'which_key_ignore' },
+  ['<leader>s'] = { name = '[S]earch',    _ = 'which_key_ignore' },
   ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+
+  ['<leader>sr']   = { name = "SearchReplace"                                                          },
+  ['<leader>srs']  = { "<CMD>SearchReplaceSingleBufferSelections<CR>", "SearchReplaceSingleBuffer [s]elction list" },
+  ['<leader>sro']  = { "<CMD>SearchReplaceSingleBufferOpen<CR>",       "[o]pen"                                    },
+  ['<leader>srw']  = { "<CMD>SearchReplaceSingleBufferCWord<CR>",      "[w]ord"                                    },
+  ['<leader>srW']  = { "<CMD>SearchReplaceSingleBufferCWORD<CR>",      "[W]ORD"                                    },
+  ['<leader>sre']  = { "<CMD>SearchReplaceSingleBufferCExpr<CR>",      "[e]xpr"                                    },
+  ['<leader>srf']  = { "<CMD>SearchReplaceSingleBufferCFile<CR>",      "[f]ile"                                    },
+  ['<leader>srb']  = { name = "SearchReplaceMultiBuffer"                                                           },
+  ['<leader>srbs'] = { "<CMD>SearchReplaceMultiBufferSelections<CR>",  "SearchReplaceMultiBuffer [s]elction list"  },
+  ['<leader>srbo'] = { "<CMD>SearchReplaceMultiBufferOpen<CR>",        "[o]pen"                                    },
+  ['<leader>srbw'] = { "<CMD>SearchReplaceMultiBufferCWord<CR>",       "[w]ord"                                    },
+  ['<leader>srbW'] = { "<CMD>SearchReplaceMultiBufferCWORD<CR>",       "[W]ORD"                                    },
+  ['<leader>srbe'] = { "<CMD>SearchReplaceMultiBufferCExpr<CR>",       "[e]xpr"                                    },
+  ['<leader>srbf'] = { "<CMD>SearchReplaceMultiBufferCFile<CR>",       "[f]ile"                                    },
 }
 
 -- mason-lspconfig requires that these setup functions are called in this order
@@ -651,5 +666,30 @@ require("oil").setup({
 -- [[ Configure focus ]]
 require('focus').setup()
 
+-- [[ Configure search-replace ]]
+require("search-replace").setup()
+
+vim.keymap.set('n', '<leader>sr', telescope_builtin.resume,      { desc = '[S]earch [R]esume'       })
+local opts = {}
+vim.keymap.set("v", "<C-r>", "<CMD>SearchReplaceSingleBufferVisualSelection<CR>", opts)
+vim.keymap.set("v", "<C-s>", "<CMD>SearchReplaceWithinVisualSelection<CR>", opts)
+vim.keymap.set("v", "<C-b>", "<CMD>SearchReplaceWithinVisualSelectionCWord<CR>", opts)
+
+vim.keymap.set("n", "<leader>rs", "<CMD>SearchReplaceSingleBufferSelections<CR>", opts)
+vim.keymap.set("n", "<leader>ro", "<CMD>SearchReplaceSingleBufferOpen<CR>", opts)
+vim.keymap.set("n", "<leader>rw", "<CMD>SearchReplaceSingleBufferCWord<CR>", opts)
+vim.keymap.set("n", "<leader>rW", "<CMD>SearchReplaceSingleBufferCWORD<CR>", opts)
+vim.keymap.set("n", "<leader>re", "<CMD>SearchReplaceSingleBufferCExpr<CR>", opts)
+vim.keymap.set("n", "<leader>rf", "<CMD>SearchReplaceSingleBufferCFile<CR>", opts)
+
+vim.keymap.set("n", "<leader>rbs", "<CMD>SearchReplaceMultiBufferSelections<CR>", opts)
+vim.keymap.set("n", "<leader>rbo", "<CMD>SearchReplaceMultiBufferOpen<CR>", opts)
+vim.keymap.set("n", "<leader>rbw", "<CMD>SearchReplaceMultiBufferCWord<CR>", opts)
+vim.keymap.set("n", "<leader>rbW", "<CMD>SearchReplaceMultiBufferCWORD<CR>", opts)
+vim.keymap.set("n", "<leader>rbe", "<CMD>SearchReplaceMultiBufferCExpr<CR>", opts)
+vim.keymap.set("n", "<leader>rbf", "<CMD>SearchReplaceMultiBufferCFile<CR>", opts)
+
+-- show the effects of a search / replace in a live preview window
+vim.o.inccommand = "split"
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
