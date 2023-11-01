@@ -280,7 +280,7 @@ vim.o.shellquote = "\\"
 vim.o.shellxquote = ""
 
 -- Font settings
-if vim.g.nvy == 1 then
+if vim.g.nvy == 1 or vim.g.neovide then
   -- https://www.nerdfonts.com/font-downloads
   vim.o.guifont = "JetBrainsMonoNL Nerd Font:h14"
 end
