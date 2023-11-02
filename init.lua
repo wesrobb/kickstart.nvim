@@ -280,9 +280,27 @@ vim.o.shellquote = "\\"
 vim.o.shellxquote = ""
 
 -- Font settings
-if vim.g.nvy == 1 or vim.g.neovide then
-  -- https://www.nerdfonts.com/font-downloads
-  vim.o.guifont = "JetBrainsMonoNL Nerd Font:h14"
+-- https://www.nerdfonts.com/font-downloads
+if vim.g.nvy == 1 then
+  vim.o.guifont = "JetBrainsMonoNL Nerd Font:h12"
+end
+if vim.g.neovide then
+  vim.o.guifont = "JetBrainsMonoNL Nerd Font:h12:#e-subpixelantialias"
+
+  vim.g.neovide_scale_factor = 1.0
+  local change_scale_factor = function(delta)
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+  end
+  vim.keymap.set("n", "<C-=>", function()
+    change_scale_factor(1.25)
+  end)
+  vim.keymap.set("n", "<C-->", function()
+    change_scale_factor(1/1.25)
+  end)
+
+  vim.g.neovide_hide_mouse_when_typing = true
+  vim.g.neovide_scroll_animation_length = 0.1
+  vim.g.neovide_cursor_animation_length = 0.05
 end
 
 -- [[ Basic Keymaps ]]
