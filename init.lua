@@ -333,6 +333,11 @@ telescope.setup {
       find_command = { 'rg', '--hidden', '--files', '--iglob', '!.git' },
       previewer = false,
     },
+    live_grep = {
+      additional_args = function(opts)
+        return { '--hidden' }
+      end
+    }
   },
   defaults = {
     mappings = {
