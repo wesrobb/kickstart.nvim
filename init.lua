@@ -167,8 +167,19 @@ require('lazy').setup({
       options = {
         icons_enabled = true,
         theme = 'onedark',
-        component_separators = '|',
-        section_separators = '',
+        component_separators = { left = '', right = ''},
+        section_separators = { left = '', right = ''},
+      },
+      sections = {
+        lualine_x = {
+          'filetype'
+        },
+        lualine_y = {
+          'location'
+        },
+        lualine_z = {
+          'getcwd'
+        },
       },
     },
   },
