@@ -59,6 +59,14 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+
+local function get_short_cwd()
+  local current_directory = vim.fn.getcwd()
+  local separator = package.config:sub(1,1) -- Get the file separator for the current platform
+  local parts = vim.fn.split(current_directory, separator)
+  return parts[#parts]
+end
+
 -- NOTE: Here is where you install your plugins.
 --  You can configure plugins using the `config` key.
 --
@@ -178,7 +186,7 @@ require('lazy').setup({
           'location'
         },
         lualine_z = {
-          'getcwd'
+          get_short_cwd
         },
       },
     },
