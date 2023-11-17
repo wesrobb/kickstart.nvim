@@ -301,10 +301,10 @@ vim.o.shellxquote = ""
 -- Font settings
 -- https://www.nerdfonts.com/font-downloads
 if vim.g.nvy == 1 then
-  vim.o.guifont = "JetBrainsMonoNL Nerd Font:h12"
+  vim.o.guifont = "ProggyCleanSZ Nerd Font:h12"
 end
 if vim.g.neovide then
-  vim.o.guifont = "JetBrainsMonoNL Nerd Font:h12:#e-subpixelantialias"
+  vim.o.guifont = "ProggyCleanSZ Nerd Font:h12"
 
   vim.g.neovide_scale_factor = 1.0
   local change_scale_factor = function(delta)
@@ -706,7 +706,11 @@ require("oil").setup({
 })
 
 -- [[ Configure focus ]]
-require('focus').setup()
+require('focus').setup({
+  autoresize = {
+    enable = false
+  }
+})
 
 -- [[ Configure search-replace ]]
 require("search-replace").setup()
@@ -752,6 +756,11 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
     resession.save(vim.fn.getcwd(), { dir = "dirsession", notify = false })
   end,
 })
+
+-- [[ Configure ToggleTerm ]]
+require('toggleterm').setup {
+  open_mapping = [[<c-\>]],
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
