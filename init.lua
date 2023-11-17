@@ -759,7 +759,8 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 
 -- [[ Configure ToggleTerm ]]
 require('toggleterm').setup {
-  open_mapping = [[<c-\>]],
+  open_mapping = [[<c-t>]],
+  direction = 'tab',
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
