@@ -73,6 +73,11 @@ end
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
+  defaults = {
+    -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
+    -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
+    lazy = true,
+  },
   -- NOTE: First, some plugins that don't require any configuration
 
   -- Git related plugins
@@ -163,7 +168,7 @@ require('lazy').setup({
     'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'midnight'
     end,
   },
 
@@ -174,7 +179,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = true,
-        theme = 'onedark',
+        -- theme = 'onedark',
         component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''},
       },
@@ -301,10 +306,10 @@ vim.o.shellxquote = ""
 -- Font settings
 -- https://www.nerdfonts.com/font-downloads
 if vim.g.nvy == 1 then
-  vim.o.guifont = "ProggyCleanSZ Nerd Font:h12"
+  vim.o.guifont = "JetbrainsMono Nerd Font:h12"
 end
 if vim.g.neovide then
-  vim.o.guifont = "ProggyCleanSZ Nerd Font:h12"
+  vim.o.guifont = "JetbrainsMono Nerd Font:h12"
 
   vim.g.neovide_scale_factor = 1.0
   local change_scale_factor = function(delta)
@@ -696,20 +701,20 @@ cmp.setup {
 require('mini.align').setup()
 
 -- [[ Configure oil.nvim ]]
-require("oil").setup({
-  view_options = {
-    -- Show files and directories that start with "."
-    show_hidden = true,
-    -- This function defines what is considered a "hidden" file
-    is_hidden_file = function(name, bufnr)
-      return vim.startswith(name, ".")
-    end,
-    -- This function defines what will never be shown, even when `show_hidden` is set
-    is_always_hidden = function(name, bufnr)
-      return vim.startswith(name, ".git")
-    end,
-  },
-})
+-- require("oil").setup({
+--   view_options = {
+--     -- Show files and directories that start with "."
+--     show_hidden = true,
+--     -- This function defines what is considered a "hidden" file
+--     is_hidden_file = function(name, bufnr)
+--       return vim.startswith(name, ".")
+--     end,
+--     -- This function defines what will never be shown, even when `show_hidden` is set
+--     is_always_hidden = function(name, bufnr)
+--       return vim.startswith(name, ".git")
+--     end,
+--   },
+-- })
 
 -- [[ Configure focus ]]
 require('focus').setup({
