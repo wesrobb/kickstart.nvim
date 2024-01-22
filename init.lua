@@ -168,7 +168,7 @@ require('lazy').setup({
 
             -- The function below will be called before any actual modifications from lspkind
             -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-            before = function (entry, vim_item)
+            before = function (_, vim_item)
               return vim_item
             end
           })
@@ -405,7 +405,7 @@ telescope.setup {
       previewer = false,
     },
     live_grep = {
-      additional_args = function(opts)
+      additional_args = function(_)
         return { '--hidden' }
       end
     }
@@ -603,13 +603,6 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  clangd = {
-    capabilities = capabilities,
-    cmd = {
-      "clangd",
-      "--offset-encoding=utf-16",
-    },
-  },
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
@@ -637,7 +630,7 @@ mason_lspconfig.setup {
 mason_lspconfig.setup_handlers {
   function(server_name)
     require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
+      capabilities = vim.lsp.protocol.make_client_capabilities(),
       on_attach = on_attach,
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
