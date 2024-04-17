@@ -73,7 +73,7 @@ require('lazy').setup({
 
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
-      'onsaile/lspkind-nvim',
+      'onsails/lspkind-nvim',
       'zbirenbaum/copilot-cmp',
     },
     config = function()
