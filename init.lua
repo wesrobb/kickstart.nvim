@@ -37,9 +37,6 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
-  -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
-
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
@@ -331,6 +328,7 @@ vim.o.undofile = true
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
+vim.o.smartindent = true
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
@@ -458,7 +456,7 @@ vim.defer_fn(function()
     auto_install = false,
 
     highlight = { enable = true },
-    indent = { enable = true },
+    indent = { enable = false },
     incremental_selection = {
       enable = true,
       keymaps = {
@@ -567,29 +565,35 @@ local on_attach = function(_, bufnr)
 end
 
 -- document existing key chains
-require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode',      _ = 'which_key_ignore' },
-  ['<leader>d'] = { name = '[D]ocument',  _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[G]it',       _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'More git',    _ = 'which_key_ignore' },
-  ['<leader>r'] = { name = '[R]ename',    _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = '[S]earch',    _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-
-  ['<leader>sr']   = { name = "SearchReplace"                                                          },
-  ['<leader>srs']  = { "<CMD>SearchReplaceSingleBufferSelections<CR>", "SearchReplaceSingleBuffer [s]elction list" },
-  ['<leader>sro']  = { "<CMD>SearchReplaceSingleBufferOpen<CR>",       "[o]pen"                                    },
-  ['<leader>srw']  = { "<CMD>SearchReplaceSingleBufferCWord<CR>",      "[w]ord"                                    },
-  ['<leader>srW']  = { "<CMD>SearchReplaceSingleBufferCWORD<CR>",      "[W]ORD"                                    },
-  ['<leader>sre']  = { "<CMD>SearchReplaceSingleBufferCExpr<CR>",      "[e]xpr"                                    },
-  ['<leader>srf']  = { "<CMD>SearchReplaceSingleBufferCFile<CR>",      "[f]ile"                                    },
-  ['<leader>srb']  = { name = "SearchReplaceMultiBuffer"                                                           },
-  ['<leader>srbs'] = { "<CMD>SearchReplaceMultiBufferSelections<CR>",  "SearchReplaceMultiBuffer [s]elction list"  },
-  ['<leader>srbo'] = { "<CMD>SearchReplaceMultiBufferOpen<CR>",        "[o]pen"                                    },
-  ['<leader>srbw'] = { "<CMD>SearchReplaceMultiBufferCWord<CR>",       "[w]ord"                                    },
-  ['<leader>srbW'] = { "<CMD>SearchReplaceMultiBufferCWORD<CR>",       "[W]ORD"                                    },
-  ['<leader>srbe'] = { "<CMD>SearchReplaceMultiBufferCExpr<CR>",       "[e]xpr"                                    },
-  ['<leader>srbf'] = { "<CMD>SearchReplaceMultiBufferCFile<CR>",       "[f]ile"                                    },
+require('which-key').add {
+    { "<leader>c", group = "[C]ode" },
+    { "<leader>c_", hidden = true },
+    { "<leader>d", group = "[D]ocument" },
+    { "<leader>d_", hidden = true },
+    { "<leader>g", group = "[G]it" },
+    { "<leader>g_", hidden = true },
+    { "<leader>h", group = "More git" },
+    { "<leader>h_", hidden = true },
+    { "<leader>r", group = "[R]ename" },
+    { "<leader>r_", hidden = true },
+    { "<leader>s", group = "[S]earch" },
+    { "<leader>s_", hidden = true },
+    { "<leader>sr", group = "SearchReplace" },
+    { "<leader>srW", "<CMD>SearchReplaceSingleBufferCWORD<CR>", desc = "[W]ORD" },
+    { "<leader>srb", group = "SearchReplaceMultiBuffer" },
+    { "<leader>srbW", "<CMD>SearchReplaceMultiBufferCWORD<CR>", desc = "[W]ORD" },
+    { "<leader>srbe", "<CMD>SearchReplaceMultiBufferCExpr<CR>", desc = "[e]xpr" },
+    { "<leader>srbf", "<CMD>SearchReplaceMultiBufferCFile<CR>", desc = "[f]ile" },
+    { "<leader>srbo", "<CMD>SearchReplaceMultiBufferOpen<CR>", desc = "[o]pen" },
+    { "<leader>srbs", "<CMD>SearchReplaceMultiBufferSelections<CR>", desc = "SearchReplaceMultiBuffer [s]elction list" },
+    { "<leader>srbw", "<CMD>SearchReplaceMultiBufferCWord<CR>", desc = "[w]ord" },
+    { "<leader>sre", "<CMD>SearchReplaceSingleBufferCExpr<CR>", desc = "[e]xpr" },
+    { "<leader>srf", "<CMD>SearchReplaceSingleBufferCFile<CR>", desc = "[f]ile" },
+    { "<leader>sro", "<CMD>SearchReplaceSingleBufferOpen<CR>", desc = "[o]pen" },
+    { "<leader>srs", "<CMD>SearchReplaceSingleBufferSelections<CR>", desc = "SearchReplaceSingleBuffer [s]elction list" },
+    { "<leader>srw", "<CMD>SearchReplaceSingleBufferCWord<CR>", desc = "[w]ord" },
+    { "<leader>w", group = "[W]orkspace" },
+    { "<leader>w_", hidden = true },
 }
 
 -- mason-lspconfig requires that these setup functions are called in this order

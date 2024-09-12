@@ -1,7 +1,7 @@
 return {
   'echasnovski/mini.files',
   dependencies = { "nvim-tree/nvim-web-devicons" },
-  config = {
+  opts = {
     vim.keymap.set("n", "-", "<CMD>:lua MiniFiles.open()<CR>", { desc = "Open parent directory" }),
   },
   init = function()
