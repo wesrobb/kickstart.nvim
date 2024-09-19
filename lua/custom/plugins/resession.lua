@@ -1,3 +1,0 @@
-return {
-  'stevearc/resession.nvim',
-}

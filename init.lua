@@ -329,6 +329,8 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.smartindent = true
+vim.o.shiftwidth = 4;
+vim.o.expandtab = true;
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
@@ -677,10 +679,6 @@ vim.keymap.set("n", "<leader>rbf", "<CMD>SearchReplaceMultiBufferCFile<CR>", opt
 
 -- show the effects of a search / replace in a live preview window
 vim.o.inccommand = "split"
-
--- [[ Configure resession ]]
-local resession = require('resession')
-resession.setup({})
 
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
