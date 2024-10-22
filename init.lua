@@ -330,6 +330,9 @@ vim.o.termguicolors = true
 
 vim.o.laststatus = 3 -- Required from avante.nvim
 
+vim.o.makeprg = "./build.sh"
+vim.keymap.set('n', '<leader>r', ':!pwsh -NoLogo -NoProfile -File ./run.sh<CR>', { noremap = true, silent = false })
+
 -- Check if 'pwsh' is executable and set the shell accordingly
 if jit.os == "Windows" then
   if vim.fn.executable('pwsh') == 1 then
@@ -345,6 +348,8 @@ if jit.os == "Windows" then
   vim.o.shellxquote = ''
 
   vim.o.makeprg = "./build.ps1"
+
+  vim.keymap.set('n', '<leader>r', ':!pwsh -NoLogo -NoProfile -File ./run.ps1<CR>', { noremap = true, silent = false })
 end
 
 -- Font settings
@@ -383,6 +388,9 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- Remap 'enter normal mode' when in terminal mode
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
+
+-- Leader b to run make
+vim.keymap.set('n', '<leader>b', ':make<CR>', { noremap = true, silent = true })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
