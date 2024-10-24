@@ -214,6 +214,7 @@ require('lazy').setup({
       },
       sections = {
         lualine_x = {
+          {'copilot', show_colors = true, show_loading = true },
           'filetype'
         },
         lualine_y = {
