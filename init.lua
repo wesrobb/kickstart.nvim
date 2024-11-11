@@ -156,6 +156,7 @@ require('lazy').setup({
       }
 
       require("copilot_cmp").setup()
+      require("CopilotChat.integrations.cmp").setup()
     end,
     event = 'InsertEnter',
   },
@@ -664,6 +665,18 @@ require('focus').setup({
 
 -- [[ Configure search-replace ]]
 require("search-replace").setup()
+
+-- [[ Configure copilot-chat ]]
+require('CopilotChat').setup({
+  model = 'claude-3.5-sonnet',
+  debug = false, -- Enable debugging
+  allow_insecure = true,
+  mappings = {
+    complete = {
+      insert = '',
+    },
+  },
+})
 
 vim.keymap.set('n', '<leader>sr', telescope_builtin.resume,      { desc = '[S]earch [R]esume'       })
 local opts = {}
