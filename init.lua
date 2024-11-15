@@ -333,7 +333,7 @@ vim.o.termguicolors = true
 vim.o.laststatus = 3 -- Required from avante.nvim
 
 vim.o.makeprg = "./build.sh"
-vim.keymap.set('n', '<leader>r', ':!pwsh -NoLogo -NoProfile -File ./run.sh<CR>', { noremap = true, silent = false })
+vim.keymap.set('n', '<leader>r', ':!bash ./run.sh<CR>', { noremap = true, silent = false })
 
 -- Check if 'pwsh' is executable and set the shell accordingly
 if jit.os == "Windows" then
