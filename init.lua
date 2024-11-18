@@ -17,7 +17,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 local function get_short_cwd()
   local current_directory = vim.fn.getcwd()
   local separator = package.config:sub(1,1) -- Get the file separator for the current platform
@@ -331,6 +330,10 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 vim.o.laststatus = 3 -- Required from avante.nvim
+
+vim.keymap.set('n', '<leader>i', function()
+    vim.api.nvim_put({os.date('%Y-%m-%d')}, '', false, true)
+end, { noremap = true, silent = false, desc = 'Insert the current date'})
 
 vim.o.makeprg = "./build.sh"
 vim.keymap.set('n', '<leader>r', ':!bash ./run.sh<CR>', { noremap = true, silent = false })
