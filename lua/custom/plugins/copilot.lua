@@ -4,8 +4,17 @@ return {
   event = "InsertEnter",
   config = function ()
     require("copilot").setup({
-      suggestion = { enabled = true },
-      panel = { enabled = true },
+      suggestion = {
+          enabled = false,
+          auto_trigger = true,
+          keymap = {
+              accept = "<Tab>",
+          },
+      },
+      panel = {
+          enable = false,
+          auto_refresh = true,
+      },
       filetypes = {
         ["*"] = true,
       },

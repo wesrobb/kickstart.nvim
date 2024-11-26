@@ -1,3 +1,4 @@
 return {
-  'nvim-focus/focus.nvim'
+  'nvim-focus/focus.nvim',
+  version = false
 }
