@@ -126,7 +126,6 @@ require('lazy').setup({
         }
       }
       require("copilot_cmp").setup()
-      require("CopilotChat.integrations.cmp").setup()
     end,
     event = 'InsertEnter',
   },
